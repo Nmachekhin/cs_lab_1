@@ -21,14 +21,40 @@ namespace MachekhinZodiak
             InitializeComponent();
             _viewModel = new ViewModel();
             DataContext = _viewModel;
-            _viewModel.IncorrectDate += IncorrectDateMessagebox;
+            _viewModel.IncorrectDate += IncorrectDateEvent;
+            _viewModel.AgeUpdate += UpdateAgeTextBlock;
+            _viewModel.DisplayBirthdayMessage += FillBirthdayMessageTextBlock;
+        }
+        
+
+        private void FillBirthdayMessageTextBlock(object sender, string message)
+        {
+            CongratTextBlock.Text = message;
         }
 
-        private void IncorrectDateMessagebox(object sender, bool e)
+        private void UpdateAgeTextBlock(object sender, int age)
+        {
+            AgeTextBlock.Text = age.ToString();
+        }
+
+        private void IncorrectDateEvent(object sender, bool e)
+        {
+            IncorrectDateMessagebox();
+            CleanAllCalculatedFields();
+
+        }
+
+        private void CleanAllCalculatedFields()
+        {
+            AgeTextBlock.Text= string.Empty;
+        }
+
+        private void IncorrectDateMessagebox()
         {
             MessageBox.Show("Entered birth date is incorrect!", "Birth date error!",
             MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
 
         private void ConfirmDateButtonClick(object sender, RoutedEventArgs e)
         {

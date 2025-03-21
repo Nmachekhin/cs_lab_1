@@ -5,14 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MachekhinZodiak"
         mc:Ignorable="d"
-        Title="Zodiak Calculator" Height="450" Width="800">
+        Title="Zodiak Calculator" Height="450" Width="300">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBox Text="Enter your birthday date:" BorderThickness="0"/>
+            <TextBlock Text="Enter your birthday date:" FontWeight="Bold"/>
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
                 <DatePicker Width="150" Height="30" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Width="50" Height="30" Content="Confirtm" Click="ConfirmDateButtonClick"/>
             </StackPanel>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                <TextBlock Text="Your age:" FontWeight="Bold" Margin="0,0,4,0"/>
+                <TextBlock x:Name="AgeTextBlock" Text="" Margin="0,0,20,0"/>
+                <TextBlock x:Name="CongratTextBlock" Text=""/>
+            </StackPanel>
+            
         </StackPanel>
 
     </Grid>

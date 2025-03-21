@@ -15,6 +15,7 @@ namespace MachekhinZodiak
         private DateTime _date;
         private int _age;
         private bool _dateValid = false;
+        private bool _isBirthdayToday = false;
 
 
         public ZodiakCalculator()
@@ -36,6 +37,10 @@ namespace MachekhinZodiak
             OnPropertyChanged(nameof(Age));
         }
 
+        public bool IsBirthdayToday
+        {
+            get { return _isBirthdayToday; }
+        }
 
         public bool IsDateValid
         {
@@ -51,6 +56,7 @@ namespace MachekhinZodiak
                 {
                     _date = value;
                     _dateValid = true;
+                    _isBirthdayToday = _date.Day == DateTime.Today.Day && _date.Month == DateTime.Today.Month;
                     CalculateAge();
                     Trace.WriteLine(Age);
                     
@@ -59,8 +65,10 @@ namespace MachekhinZodiak
                 {
                     _date = DateTime.Today;
                     _dateValid = false;
+                    _isBirthdayToday = false;
                 }
                 OnPropertyChanged(nameof(IsDateValid));
+                OnPropertyChanged(nameof(IsBirthdayToday));
                 OnPropertyChanged(nameof(Date));
                 
 

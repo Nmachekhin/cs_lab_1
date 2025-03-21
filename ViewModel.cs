@@ -15,7 +15,8 @@ namespace MachekhinZodiak
         private ZodiakCalculator _datesToZodiakCalculator;
         public event PropertyChangedEventHandler PropertyChanged;
         public event EventHandler<bool> IncorrectDate;
-
+        public event EventHandler<int> AgeUpdate;
+        public event EventHandler<string> DisplayBirthdayMessage;
         private DateTime _selectedDate;
 
         public ViewModel()
@@ -24,6 +25,7 @@ namespace MachekhinZodiak
             _datesToZodiakCalculator.PropertyChanged += OnModelPropertyChanged;
             Date = _datesToZodiakCalculator.Date;
         }
+
 
         public DateTime Date
         {
@@ -45,6 +47,13 @@ namespace MachekhinZodiak
                 case (nameof(ZodiakCalculator.Date)):
                     Date = _datesToZodiakCalculator.Date;
                     OnPropertyChanged(nameof(Date));
+                    break;
+                case (nameof(ZodiakCalculator.IsBirthdayToday)):
+                    if (_datesToZodiakCalculator.IsBirthdayToday) DisplayBirthdayMessage.Invoke(this, "🎉🎉🎉Happy birthday!🎉🎉🎉");
+                    else DisplayBirthdayMessage.Invoke(this, String.Empty);
+                    break;
+                case (nameof(ZodiakCalculator.Age)):
+                    AgeUpdate.Invoke(this, _datesToZodiakCalculator.Age);
                     break;
                 case (nameof(ZodiakCalculator.IsDateValid)):
                     if (!IsDateValid) IncorrectDate.Invoke(this, false);
