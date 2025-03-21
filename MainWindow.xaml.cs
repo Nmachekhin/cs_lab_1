@@ -30,5 +30,10 @@ namespace MachekhinZodiak
             MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+        private void ConfirmDateButtonClick(object sender, RoutedEventArgs e)
+        {
+            _viewModel.ConfirmDateButtonClick(sender, e);
+        }
+
     }
 }

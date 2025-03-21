@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MachekhinZodiak"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Zodiak Calculator" Height="450" Width="800">
     <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBox Text="Enter your birthday date:" BorderThickness="0"/>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                <DatePicker Width="150" Height="30" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Width="50" Height="30" Content="Confirtm" Click="ConfirmDateButtonClick"/>
+            </StackPanel>
+        </StackPanel>
 
-        <DatePicker Width="150" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"
-                    SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-        </DatePicker>
     </Grid>
 </Window>

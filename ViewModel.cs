@@ -5,22 +5,30 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace MachekhinZodiak
 {
     internal class ViewModel : INotifyPropertyChanged
     {
         private ZodiakCalculator _datesToZodiakCalculator;
+        public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler<bool> IncorrectDate;
+
+        private DateTime _selectedDate;
+
         public ViewModel()
         { 
             _datesToZodiakCalculator = new ZodiakCalculator();
             _datesToZodiakCalculator.PropertyChanged += OnModelPropertyChanged;
+            Date = _datesToZodiakCalculator.Date;
         }
 
         public DateTime Date
         {
-            get { return _datesToZodiakCalculator.Date; }
-            set { _datesToZodiakCalculator.Date=value; }
+            get { return _selectedDate; }
+            set { _selectedDate=value; }
         }
 
         public bool IsDateValid
@@ -35,6 +43,7 @@ namespace MachekhinZodiak
             switch (e.PropertyName)
             {
                 case (nameof(ZodiakCalculator.Date)):
+                    Date = _datesToZodiakCalculator.Date;
                     OnPropertyChanged(nameof(Date));
                     break;
                 case (nameof(ZodiakCalculator.IsDateValid)):
@@ -43,8 +52,10 @@ namespace MachekhinZodiak
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public event EventHandler<bool> IncorrectDate;
+        public void ConfirmDateButtonClick(object sender, RoutedEventArgs e)
+        {
+            _datesToZodiakCalculator.Date = Date;
+        }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

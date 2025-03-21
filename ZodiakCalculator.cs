@@ -32,7 +32,7 @@ namespace MachekhinZodiak
             DateTime today = DateTime.Today;
             _age = (DateTime.Today.Year - Date.Year);
             if (DateTime.Today.Month < Date.Month) _age--;
-            if (DateTime.Today.Month == Date.Month && DateTime.Today.Day > Date.Day) _age--;
+            if (DateTime.Today.Month == Date.Month && DateTime.Today.Day > Date.Day && _age>0) _age--;
             OnPropertyChanged(nameof(Age));
         }
 
