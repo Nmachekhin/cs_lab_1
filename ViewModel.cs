@@ -17,6 +17,7 @@ namespace MachekhinZodiak
         public event EventHandler<bool> IncorrectDate;
         public event EventHandler<int> AgeUpdate;
         public event EventHandler<string> DisplayBirthdayMessage;
+        public event EventHandler<string> DisplayZodiakSign;
         private DateTime _selectedDate;
 
         public ViewModel()
@@ -57,6 +58,9 @@ namespace MachekhinZodiak
                     break;
                 case (nameof(ZodiakCalculator.IsDateValid)):
                     if (!IsDateValid) IncorrectDate.Invoke(this, false);
+                    break;
+                case (nameof(ZodiakCalculator.CurrentZodiakSign)):
+                    DisplayZodiakSign.Invoke(this, _datesToZodiakCalculator.CurrentZodiakSign);
                     break;
             }
         }

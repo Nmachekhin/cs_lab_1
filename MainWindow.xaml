@@ -18,7 +18,13 @@
                 <TextBlock x:Name="AgeTextBlock" Text="" Margin="0,0,20,0"/>
                 <TextBlock x:Name="CongratTextBlock" Text=""/>
             </StackPanel>
-            
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                <TextBlock FontWeight="Bold" Text="Your Zodiak sign is:" Margin="0,0,4,0"/>
+                <TextBlock x:Name="ZodiakSignTextBlock" Text="" />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
+                <TextBlock FontWeight="Bold" Text="Your Chineese Zodiak sign is:" Margin="0,0,4,0"/>
+            </StackPanel>
         </StackPanel>
 
     </Grid>

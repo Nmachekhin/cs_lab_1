@@ -24,6 +24,7 @@ namespace MachekhinZodiak
             _viewModel.IncorrectDate += IncorrectDateEvent;
             _viewModel.AgeUpdate += UpdateAgeTextBlock;
             _viewModel.DisplayBirthdayMessage += FillBirthdayMessageTextBlock;
+            _viewModel.DisplayZodiakSign += UpdateZodiakSignTextBlock;
         }
         
 
@@ -37,6 +38,11 @@ namespace MachekhinZodiak
             AgeTextBlock.Text = age.ToString();
         }
 
+        private void UpdateZodiakSignTextBlock(object sender, string sign)
+        {
+            ZodiakSignTextBlock.Text = sign;
+        }
+
         private void IncorrectDateEvent(object sender, bool e)
         {
             IncorrectDateMessagebox();
@@ -47,6 +53,7 @@ namespace MachekhinZodiak
         private void CleanAllCalculatedFields()
         {
             AgeTextBlock.Text= string.Empty;
+            ZodiakSignTextBlock.Text = string.Empty;
         }
 
         private void IncorrectDateMessagebox()
