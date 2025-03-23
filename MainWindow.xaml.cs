@@ -21,10 +21,12 @@ namespace MachekhinZodiak
             InitializeComponent();
             _viewModel = new ViewModel();
             DataContext = _viewModel;
-            _viewModel.IncorrectDate += IncorrectDateEvent;
+            _viewModel.ShowIncorrectDateMessage += IncorrectDateEvent;
             _viewModel.AgeUpdate += UpdateAgeTextBlock;
             _viewModel.DisplayBirthdayMessage += FillBirthdayMessageTextBlock;
             _viewModel.DisplayZodiakSign += UpdateZodiakSignTextBlock;
+            _viewModel.DisplayChineeseZodiakSign += UpdateChineeseZodiakSignTextBlock;
+            _viewModel.ClearAllCalculatedFields += ClearAllCalculatedFieldsEvent;
         }
         
 
@@ -43,17 +45,26 @@ namespace MachekhinZodiak
             ZodiakSignTextBlock.Text = sign;
         }
 
-        private void IncorrectDateEvent(object sender, bool e)
+        private void UpdateChineeseZodiakSignTextBlock(object sender, string sign)
         {
-            IncorrectDateMessagebox();
-            CleanAllCalculatedFields();
-
+            ChineeseZodiakSignTextBlock.Text = sign;
         }
 
+        private void IncorrectDateEvent(object sender, EventArgs e)
+        {
+            IncorrectDateMessagebox();
+        }
+
+        private void ClearAllCalculatedFieldsEvent(object sender, EventArgs e)
+        {
+            CleanAllCalculatedFields();
+        }
         private void CleanAllCalculatedFields()
         {
             AgeTextBlock.Text= string.Empty;
+            CongratTextBlock.Text= string.Empty;
             ZodiakSignTextBlock.Text = string.Empty;
+            ChineeseZodiakSignTextBlock.Text= string.Empty;
         }
 
         private void IncorrectDateMessagebox()

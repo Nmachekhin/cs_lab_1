@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MachekhinZodiak"
         mc:Ignorable="d"
-        Title="Zodiak Calculator" Height="450" Width="300">
+        Title="Zodiak Calculator" Height="200" Width="300">
     <Grid>
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Enter your birthday date:" FontWeight="Bold"/>
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
                 <DatePicker Width="150" Height="30" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Width="50" Height="30" Content="Confirtm" Click="ConfirmDateButtonClick"/>
+                <Button Width="55" Height="30" Content="Calculate" Click="ConfirmDateButtonClick"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
                 <TextBlock Text="Your age:" FontWeight="Bold" Margin="0,0,4,0"/>
@@ -24,6 +24,7 @@
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal">
                 <TextBlock FontWeight="Bold" Text="Your Chineese Zodiak sign is:" Margin="0,0,4,0"/>
+                <TextBlock x:Name="ChineeseZodiakSignTextBlock" Text="" />
             </StackPanel>
         </StackPanel>
 

@@ -14,10 +14,12 @@ namespace MachekhinZodiak
     {
         private ZodiakCalculator _datesToZodiakCalculator;
         public event PropertyChangedEventHandler PropertyChanged;
-        public event EventHandler<bool> IncorrectDate;
+        public event EventHandler ShowIncorrectDateMessage;
+        public event EventHandler ClearAllCalculatedFields;
         public event EventHandler<int> AgeUpdate;
         public event EventHandler<string> DisplayBirthdayMessage;
         public event EventHandler<string> DisplayZodiakSign;
+        public event EventHandler<string> DisplayChineeseZodiakSign;
         private DateTime _selectedDate;
 
         public ViewModel()
@@ -57,10 +59,17 @@ namespace MachekhinZodiak
                     AgeUpdate.Invoke(this, _datesToZodiakCalculator.Age);
                     break;
                 case (nameof(ZodiakCalculator.IsDateValid)):
-                    if (!IsDateValid) IncorrectDate.Invoke(this, false);
+                    if (!IsDateValid)
+                    {
+                        ClearAllCalculatedFields.Invoke(this, EventArgs.Empty);
+                        ShowIncorrectDateMessage.Invoke(this, EventArgs.Empty);
+                    }
                     break;
                 case (nameof(ZodiakCalculator.CurrentZodiakSign)):
                     DisplayZodiakSign.Invoke(this, _datesToZodiakCalculator.CurrentZodiakSign);
+                    break;
+                case (nameof(ZodiakCalculator.CurrentChineeseZodiakSign)):
+                    DisplayChineeseZodiakSign.Invoke(this, _datesToZodiakCalculator.CurrentChineeseZodiakSign);
                     break;
             }
         }
